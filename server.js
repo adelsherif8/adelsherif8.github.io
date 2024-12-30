@@ -5,11 +5,14 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 const app = express();
-const PORT = 5002;
+const PORT = process.env.PORT || 5002; // Use Render's dynamic port or fallback to 5002
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+  origin: "https://lovely-sawine-55aadf.netlify.app", // Replace with your Netlify frontend domain
+  methods: ["GET", "POST", "PUT", "DELETE"], // Specify allowed methods
+}));
 
 // MongoDB connection
 mongoose
@@ -90,12 +93,3 @@ app.delete("/delete/:id", async (req, res) => {
 
 // Start server
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-const path = require("path");
-
-// Serve static files from React app
-app.use(express.static(path.join(__dirname, "build")));
-
-// Catch-all route to serve React's `index.html`
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
