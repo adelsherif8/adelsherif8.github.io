@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5002; // Use Render's dynamic port or fallback 
 // Middleware
 app.use(bodyParser.json());
 app.use(cors({
-  origin: "https://lovely-sawine-55aadf.netlify.app", // Replace with your Netlify frontend domain
+  origin: "https://precious-crisp-352020.netlify.app/", // Replace with your Netlify frontend domain
   methods: ["GET", "POST", "PUT", "DELETE"], // Specify allowed methods
 }));
 
